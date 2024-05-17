@@ -94,7 +94,7 @@ void setup() {
  
 
 void loop() {
-  esp.println("AT+CIPSTART=\"TCP\",\"54.166.71.140 \",443");
+  esp.println("AT+CIPSTART=\"TCP\",\"192.168.43.1\",443");
   esp.println("AT+CIPSEND=0,124");
   esp.println("write 10.20.30.40 5.623");
   delay(1000);
