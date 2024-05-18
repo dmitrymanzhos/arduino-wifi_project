@@ -20,9 +20,10 @@ const int MAXSIZE = 1024;
 
 // создание новой бд
 int create_db_file(char *name, char *field_names){
-    FILE* fp = fopen(name, "a"); // --dlib full
+    FILE* fp = fopen(name, "w"); // --dlib full
     // FILE *fopen(), "w");
-    fprintf(fp, "time %s", field_names);
+    fprintf(fp, "time %s\n", field_names);
+    fclose(fp);
     return 0;
 }
 

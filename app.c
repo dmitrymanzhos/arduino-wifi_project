@@ -11,6 +11,7 @@
 // } info;
 
 int main(int argc, char *argv[]){
+    create_db_file("new.txt", "volts");
     while (1){
         char *command = malloc(1024);
         // if (scanf("%s", command) && check_command(command) == 1) handle_command(command);
