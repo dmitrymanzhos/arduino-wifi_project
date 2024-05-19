@@ -1,4 +1,41 @@
 192.168.43.153"
-+CIGSR:STAMAC,"d0:98:06:15:ga:0c"
++CIGSR:STAMAC,"e0:98:06:15:fa:0c"
 
 OK
+
+
+
+
+
+---------------------------
+notebook ip: 192.168.43.1 
+
+
+---------------------------
+nc -u -l 7000
+ip route | grep default
+"""default via 192.168.43.1 dev wlp0s20f3 proto dhcp metric 600 """
+
+sudo arp-scan --interface=wlp0s20f3 --localnet
+"""
+    Interface: wlp0s20f3, type: EN10MB, MAC: bc:f1:71:48:a1:cf, IPv4: 192.168.43.214
+    Starting arp-scan 1.9.7 with 256 hosts (https://github.com/royhills/arp-scan)
+    192.168.43.1	ca:11:0b:74:86:7b	(Unknown: locally administered)
+   	192.168.43.153     e0:98:06:15:fa:0c	Espressif Inc.
+
+    2 packets received by filter, 0 packets dropped by kernel
+    Ending arp-scan 1.9.7: 256 hosts scanned in 1.931 seconds (132.57 hosts/sec). 2 responded
+"""
+
+sudo ping -f 192.168.43.153
+
+wireshark
+tshark
+sudo tshark -i 1 -Y "ip.addr==192.168.43.153"
+
+
+
+nc -u -p 7000 192.168.43.153 7001
+
+
+//  esp.println("AT+CWJAP=\"&Dolgopniki\",\"KSP_kr0t0vuxa\"");
