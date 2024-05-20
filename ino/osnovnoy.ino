@@ -84,9 +84,6 @@ void setup() {
 //   }
   
 //   esp.flush();
-  
-  // narodmonSend(); // отправляем данные
- 
 }
  
 
