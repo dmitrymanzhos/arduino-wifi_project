@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
         char *command = malloc(1024);
         // if (scanf("%s", command) && check_command(command) == 1) handle_command(command);
         // if(fgets(command, 1024, stdin) && check_command(command) == 1) handle_command(command, 0);
-        if(fgets(command, 1024, stdin)) handle_command(command, 0);
+        if(fgets(command, 1024, stdin)) handle_command(command, "new.txt", 0);
         printf("%s", command);
     }
     // free(command);
