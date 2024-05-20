@@ -38,4 +38,3 @@ sudo tshark -i 1 -Y "ip.addr==192.168.43.153"
 nc -u -p 7000 192.168.43.153 7001
 
 
-//  esp.println("AT+CWJAP=\"&Dolgopniki\",\"KSP_kr0t0vuxa\"");

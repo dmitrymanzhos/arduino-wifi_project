@@ -1,3 +1,5 @@
+// принимает UDP пакеты и записывает в файл
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

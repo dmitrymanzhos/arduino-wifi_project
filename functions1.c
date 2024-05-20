@@ -1,3 +1,5 @@
+// функции для работы с файлом
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -92,6 +94,16 @@ int write_to_file(char filename[], char *time, float field_value){
     return 0;
 }
 
-int check_time_format(char *time){;}
+int check_time_format(char *time){
+    int s = 0;
+    if (sscanf(time, "%d", &s ) == 1){
+        return 1;
+    }
+    else return 0;
+}
 
-void clear_buf(){;}
+void clear_buf(){
+    int c = 0;
+    while ((c = getchar()) != EOF && c != '\n');
+    return;
+}
