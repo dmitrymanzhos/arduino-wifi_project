@@ -6,10 +6,10 @@
 
 #endif
 
-typedef struct _info {
-    char **filenames;
-    int y;
-} info;
+// typedef struct _info {
+//     char **filenames;
+//     int y;
+// } info;
 
 // создание новой бд
 int create_db_file(char *name, char *field_names);
@@ -18,12 +18,12 @@ int create_db_file(char *name, char *field_names);
 int delete_db_file(char *name);
 
 // обработчик команд
-int handle_command(char *command, int tmp);
+int handle_command(char *command, char* filename, int tmp);
 
 
-// int write_tmp(char *command, char* buf);
+// int write_to_file_tmp(char *command, char* buf);
 
-int write(char *filename, char *time, float field_value);
+int write_to_file(char *filename, char *time, float field_value);
 
 int check_time_format(char *time);
 

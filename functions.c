@@ -6,17 +6,11 @@
 #include <string.h>
 #include "functions.h"
 
+#define _CRT_SECURE_NO_WARNINGS
+
 const char *COMMANDNAMES[] = {"write", "print", "rewrite", "get"};
 const int MAXSIZE = 1024;
 
-// int main(int argc, char *argv[]){
-//     while (1){
-//         char *command = malloc(1024);
-//         // if (scanf("%s", command) && check_command(command) == 1) handle_command(command);
-//         if(fgets(command, 1024, stdin) && check_command(command) == 1) handle_command(command, 0);
-//     }
-//     return 0;
-// }
 
 // создание новой бд
 int create_db_file(char *name, char *field_names){
@@ -33,15 +27,16 @@ int delete_db_file(char *name){
 }
 
 // обработчик команд
-int handle_command(char *command, int tmp){
+int handle_command(char *command, char* filename, int tmp){
     if (strncmp(command, COMMANDNAMES[0], 5) == 0){
         printf("yes\n");
         char *cmname = malloc(1024);
-        char *filename = malloc(1024);
+        // char *filename = malloc(1024);
         char *time = malloc(1024);
         float field_value;
         // if (sscanf(command, "%s %s %s %f", cmname, filename, time, &field_value) == 4) printf("ok-scanf\n");
-        if (sscanf(command, "%s %s %s %f", cmname, filename, time, &field_value) == 4 && check_time_format(time)){
+        // if (sscanf(command, "%s %s %s %f", cmname, filename, time, &field_value) == 4 && check_time_format(time)){
+        if (sscanf(command, "%s %s %f", cmname, time, &field_value) == 3 && check_time_format(time)){
 
             if (tmp)
                 ;
@@ -52,6 +47,9 @@ int handle_command(char *command, int tmp){
                 return write(filename, time, field_value);
             }
         }
+
+        free(cmname);
+        free(time);
     // else if (strncmp(command, COMMANDNAMES[1], 5) == 0){
     //     char *filename = malloc(1024);
     //     char *time = malloc(1024);
@@ -99,7 +97,6 @@ int write(char *filename, char *time, float field_value){
 char* read(char *filename, char *time){
     FILE* fp = fopen(filename, "r");
     fclose(fp);
-
 }
 
 int rewrite(char *filename, char *time, float *field_values){
@@ -110,15 +107,24 @@ int get(char *filename, char *time){
     return 0;
 }
 
-int check_time_format(char *time){
-    // hh.mm.ss.msms
-    int h, m, s, ms = 0;
-    printf("strlen=%ld\n", strlen(time));
-    if (strlen(time) == 11 && sscanf(time, "%d.%d.%d.%d", &h, &m, &s, &ms) == 4 && (0 <= h <= 99) && (0 <= m <= 99) && (0 <= s <= 99) && (0 <= ms <= 99)){
+// int check_time_format(char *time){
+//     // hh.mm.ss.msms
+//     int h, m, s, ms = 0;
+//     printf("strlen=%ld\n", strlen(time));
+//     if (strlen(time) == 11 && sscanf(time, "%d.%d.%d.%d", &h, &m, &s, &ms) == 4 && (0 <= h <= 99) && (0 <= m <= 99) && (0 <= s <= 99) && (0 <= ms <= 99)){
+//         return 1;
+//     }
+//     else return 0;
+// }
+
+int check_time_format(char* time){
+    int s = 0;
+    if (sscanf(time, "%d", &s ) == 1){
         return 1;
     }
     else return 0;
 }
+
 
 
 //------------------------------------------------------------------------------------------------------------------
