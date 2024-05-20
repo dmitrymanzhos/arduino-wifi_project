@@ -81,7 +81,7 @@ int main(int argc,char *argv[]) {
     
 create_db_file("new.txt", "volts");
 
-    uv_ip4_addr("192.168.43.214", 7000, &addr); // what address?
+    uv_ip4_addr("192.168.43.214", 7000, &addr); // local net address and port
 
 
     status = uv_udp_bind(&server, (const struct sockaddr*)&addr,0);
